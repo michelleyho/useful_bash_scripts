@@ -6,12 +6,14 @@ source_branch=$2
 branch_name=$3
 tag_name=$4
 
+basename=$(basename $repo)
+repo_name=${basename%.*}
 echo "Will be performing branching and releasing on repo:${repo} on branch ${source_branch}"
 echo "New branch name: ${branch_name}"
 echo "New tag name: ${tag_name}"
 
 git clone ${repo}
-cd ${repo}
+cd ${repo_name}
 git checkout ${source_branch}
 git checkout -b ${branch_name}
 git push origin ${branch_name}
